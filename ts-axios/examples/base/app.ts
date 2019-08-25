@@ -82,13 +82,13 @@ axios({
 //   }
 // })
 
-// const arr = new Int32Array([21, 31])
+const arr = new Int32Array([21, 31])
 
-// axios({
-//   method: 'post',
-//   url: '/base/buffer',
-//   data: arr
-// })
+axios({
+  method: 'post',
+  url: '/base/buffer',
+  data: arr
+})
 
 
 // const paramsString = 'q=URLUtils.searchParams&topic=api'
