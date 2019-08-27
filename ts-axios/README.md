@@ -7,3 +7,4 @@
 <h2>5-4 处理请求 url 参数 - demo 编写</h2>
 <h2>5-5 处理请求 body 数据 - 需求分析+ 实现</h2>
 <h2>5-7 处理请求 header - processHeaders 函数实现</h2>
+<h2>5-8 处理请求 header - 实现请求 header 处理逻辑</h2>
