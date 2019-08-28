@@ -11,7 +11,7 @@
 <h2>5-9 处理请求 header - demo 编写</h2>
 <h2>5-10 获取响应数据 - 需求分析+实现</h2>
 <h2>5-11 处理响应 header - 需求分析+ parseHeaders 函数实现及应用</h2>
-<h2></h2>
+<h2>5-12 处理响应 data - 需求分析+ transformResponse 函数实现及应用</h2>
 <h2></h2>
 <h2></h2>
 <h2></h2>
