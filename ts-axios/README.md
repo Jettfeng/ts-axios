@@ -13,7 +13,7 @@
 <h2>5-11 处理响应 header - 需求分析+ parseHeaders 函数实现及应用</h2>
 <h2>5-12 处理响应 data - 需求分析+ transformResponse 函数实现及应用</h2>
 <h2>6-1 错误处理 - 需求分析</h2>
-<h2></h2>
+<h2>6-4 错误信息增强 - 创建 AxiosError 类</h2>
 <h2></h2>
 <h2></h2>
 <h2></h2>
