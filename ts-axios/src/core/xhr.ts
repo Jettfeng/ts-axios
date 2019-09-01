@@ -1,6 +1,6 @@
-import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from './types/index';
-import { parseHeaders } from './helpers/headers';
-import { createError } from './helpers/error';
+import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types/index';
+import { parseHeaders } from '../helpers/headers';
+import { createError } from '../helpers/error';
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     // TODO
@@ -14,7 +14,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         if (timeout) {
             request.timeout = timeout
         }
-        request.open(method.toUpperCase(), url, true)
+        request.open(method.toUpperCase(), url!, true)
         // 成功
         request.onreadystatechange = function handleLoad() {
             if (request.readyState !== 4) {// 接收失败
