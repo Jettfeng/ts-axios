@@ -124,7 +124,7 @@ function registerExtendRouter () {
   })
 
   router.options('/extend/options', function(req, res) {
-    res.end()
+    res.json({method:'extend/options'})
   })
 
   router.delete('/extend/delete', function(req, res) {
