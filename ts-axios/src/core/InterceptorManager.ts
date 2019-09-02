@@ -1,12 +1,12 @@
 import { ResolvedFn, RejectedFn } from '../types/index';
 
-interface interceptor<T> {
+interface Interceptor<T> {
     resolved: ResolvedFn<T>
     rejected?: RejectedFn
 }
 
 export default class InterceptorManager<T>{
-    private interceptors: Array<interceptor<T> | null>
+    private interceptors: Array<Interceptor<T> | null>
     constructor() {
         this.interceptors = []
     }
@@ -18,7 +18,7 @@ export default class InterceptorManager<T>{
         return this.interceptors.length - 1
     }
     // 让外部访问
-    forEach(fn: (interceptor: interceptor<T>) => void): void {
+    forEach(fn: (interceptor: Interceptor<T>) => void): void {
         this.interceptors.forEach(interceptor => {
             if (interceptor !== null) {
                 fn(interceptor)
