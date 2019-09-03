@@ -1,6 +1,7 @@
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse, Method, AxiosError, ResolvedFn, RejectedFn } from '../types/index';
 import dispatchRequest from './diapatchRequest';
 import InterceptorManager from './InterceptorManager';
+import mergeConfig from './mergeConfig';
 
 interface Interceptors {
     request: InterceptorManager<AxiosRequestConfig>
@@ -22,6 +23,7 @@ export default class Axios {
             response: new InterceptorManager<AxiosResponse>()
         }
     }
+
     request(url: any, config?: any): AxiosPromise { // 函数重载
         if (typeof url === 'string') {
             if (!config) {
@@ -31,6 +33,8 @@ export default class Axios {
         } else { // url为对象
             config = url
         }
+        // 合并配置
+        config = mergeConfig(this.defaults, config)
         // 拦截器
         const chain: PromiseChain<any>[] = [{
             resolved: dispatchRequest,
