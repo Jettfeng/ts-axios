@@ -61,8 +61,12 @@ export interface AxiosInstance extends Axios {
     <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> // 函数重载
 }
 
+// axios实例
 export interface AxiosStatic extends AxiosInstance {
     create(config?: AxiosRequestConfig): AxiosInstance
+    CancelToken: CancelTokenStatic
+    Cancel: CancelStatic
+    isCancel: (value: any) => boolean
 }
 
 // 拦截器
@@ -85,8 +89,9 @@ export interface AxiosTransformer {
 
 // 取消
 export interface CancelToken {
-    promise: Promise<string>
-    reason?: string
+    promise: Promise<Cancel>
+    reason?: Cancel
+    throwIfRequested(): void
 }
 // 取消方法
 export interface Canceler {
@@ -106,4 +111,12 @@ export interface CancelTokenStatic {
     new(executor: CancelExecutor): CancelToken
 
     source(): CancelTokenSource
+}
+
+export interface Cancel {
+    message?: string
+}
+
+export interface CancelStatic {
+    new(message?: string): Cancel
 }
