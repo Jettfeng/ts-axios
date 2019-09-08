@@ -1,7 +1,7 @@
 // 判断是否是日期
 const toString = Object.prototype.toString
 export function isDate(val: any): val is Date {
-    return toString.call(val) === '[object Date]'
+  return toString.call(val) === '[object Date]'
 }
 // 判断是否为对象
 // export function isObject(val: any): val is Object {
@@ -9,36 +9,40 @@ export function isDate(val: any): val is Date {
 // }
 
 export function isPlainObject(val: any): val is Object {
-    return toString.call(val) === '[object Object]'
+  return toString.call(val) === '[object Object]'
+}
+// 判断是否为formData
+export function isFormData(val: any): val is FormData {
+  return typeof val !== 'undefined' && val instanceof FormData
 }
 
 export function extend<T, U>(to: T, from: U): T & U {
-    for (const key in from) {
-        ; (to as T & U)[key] = from[key] as any
-    }
-    return to as T & U
+  for (const key in from) {
+    ; (to as T & U)[key] = from[key] as any
+  }
+  return to as T & U
 }
 
 // 对象拷贝
 export function deepMerge(...objs: any[]): any {
-    const result = Object.create(null)
-  
-    objs.forEach(obj => {
-      if (obj) {
-        Object.keys(obj).forEach(key => {
-          const val = obj[key]
-          if (isPlainObject(val)) {
-            if (isPlainObject(result[key])) {
-              result[key] = deepMerge(result[key], val)
-            } else {
-              result[key] = deepMerge(val)
-            }
+  const result = Object.create(null)
+
+  objs.forEach(obj => {
+    if (obj) {
+      Object.keys(obj).forEach(key => {
+        const val = obj[key]
+        if (isPlainObject(val)) {
+          if (isPlainObject(result[key])) {
+            result[key] = deepMerge(result[key], val)
           } else {
-            result[key] = val
+            result[key] = deepMerge(val)
           }
-        })
-      }
-    })
-  
-    return result
-  }
+        } else {
+          result[key] = val
+        }
+      })
+    }
+  })
+
+  return result
+}
