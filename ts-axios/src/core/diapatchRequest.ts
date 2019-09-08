@@ -24,8 +24,8 @@ function processConfig(config: AxiosRequestConfig): void {
 }
 // 处理url
 function transformURL(config: AxiosRequestConfig): string {
-    const { url, params } = config
-    return buildURL(url!, params) // url!表示该数据一定不会为空
+    const { url, params, paramsSerializer } = config
+    return buildURL(url!, params, paramsSerializer) // url!表示该数据一定不会为空
 }
 // 处理data
 // function transformRequestData(config: AxiosRequestConfig): any {
