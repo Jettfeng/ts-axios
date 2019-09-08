@@ -1,11 +1,13 @@
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types/index';
 import { parseHeaders } from '../helpers/headers';
 import { createError } from '../helpers/error';
+import { isURLSameOrigin } from '../helpers/url';
+import cookie from '../helpers/cookie';
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     // TODO
     return new Promise((resolve, reject) => {
-        const { data = null, url, method = "get", headers, responseType, timeout, cancelToken, withCredentials } = config
+        const { data = null, url, method = "get", headers, responseType, timeout, cancelToken, withCredentials, xsrfCookieName, xsrfHeaderName } = config
         const request = new XMLHttpRequest()
         if (responseType) {
             request.responseType = responseType
@@ -48,6 +50,13 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         // 跨域处理
         if (withCredentials) {
             request.withCredentials = withCredentials
+        }
+        // XSRF 防御
+        if ((withCredentials || isURLSameOrigin(url!)) && xsrfCookieName) {
+            const xsrfValue = cookie.read(xsrfCookieName)
+            if (xsrfValue && xsrfHeaderName) {
+                headers[xsrfHeaderName] = xsrfValue
+            }
         }
         Object.keys(headers).forEach((name) => {
             if (data === null && name.toLowerCase() === 'content-type') {
