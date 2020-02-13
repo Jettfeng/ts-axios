@@ -6,7 +6,7 @@ export function transformRequest(data: any): any {
     }
     return data
 }
-
+// 如果没有设置 responseType:'josn',返回的data为字符串
 export function transformResponse(data: any): any {
     if (typeof data === 'string') {
         try {
