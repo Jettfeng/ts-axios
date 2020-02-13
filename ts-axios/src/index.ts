@@ -13,7 +13,7 @@ function axios(config: AxiosRequestConfig): AxiosPromise {
 function processConfig(config: AxiosRequestConfig): void {
     config.url = transformURL(config)
     config.headers = transformHeaders(config)
-    // 处理headers要在处理data之前，因为处理data的时候对data进行了转换
+    // 处理headers要在处理data之前，因为处理data的时候对data进行了转换（将data转换成了字符串）
     config.data = transformRequestData(config)
 }
 // 处理url
