@@ -13,17 +13,26 @@ function encode(val: string): string {
 
 export function buildURL(url: string, params?: any): string {
     // 返回一个新的url
-    if (!params) {
+    if (!params) { // 如果没有params，直接返回url
         return url
     }
     const parts: string[] = []
     Object.keys(params).forEach((key) => {
         const val = params[key]
-        if (val === null || typeof val === 'undefined') {
+        if (val === null || typeof val === 'undefined') { // 不发送值为null和undefined的参数
             return
         }
         let values = []
-        if (Array.isArray(val)) {
+        if (Array.isArray(val)) {  
+          // 参数值为数组
+          // axios({
+          //   method: 'get',
+          //   url: '/base/get',
+          //   params: {
+          //     foo: ['bar', 'baz']
+          //   }
+          // })
+          // 最终请求的 url 是 /base/get?foo[]=bar&foo[]=baz'
             values = val
             key += '[]'
         } else {
