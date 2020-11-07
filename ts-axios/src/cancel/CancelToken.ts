@@ -13,7 +13,7 @@ export default class CancelToken {
             resolvePromise = resolve
         })
         executor(message => {
-            if (this.reason) {
+            if (this.reason) { // 防止多次调用
                 return
             }
             this.reason = message
